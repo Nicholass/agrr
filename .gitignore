@@ -2,6 +2,36 @@
 logs
 *.log
 
+#IDE's
+.idea
+.projects
+.netbeans
+.metadata
+.project
+.settings
+.svn
+
+#archives
+*.tar.gz
+*.tar.bz2
+*.zip
+*.bz2
+*.rar
+*.tar
+
+#databases
+dump.rdb
+
+# old files
+*.bak
+*.old
+
+# OS files
+.DS_Store
+
+##sass, less
+.sass-cache
+
 # Runtime data
 pids
 *.pid
