@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="agrr">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <title></title>
+</head>
+<body>
+
+<div class="table-responsive" ng-controller="agrrController as places">
+    <table class="table table-striped table-hover" >
+        <tr ng-repeat="place in places.items | orderBy:'submittedDate'" ng-controller="rowController as row">
+            <td> {{place.title | uppercase }} </td>
+            <td>
+                <span >
+                    {{place.type}}
+                </span>
+             </td>
+            <td> {{place.description}} </td>
+            <td> {{place.submittedDate | date:"dd/MM/yyyy @ hh:mm"}} </td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="scripts/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+</div>
+</body>
+</html>
