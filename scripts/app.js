@@ -3,6 +3,7 @@
 
 	app.controller('agrrController', function() {
 		this.items = places;
+		// TODO highlght anchor
 	});
 
 	app.controller('rowController', function() {
