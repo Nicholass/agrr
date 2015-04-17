@@ -20,7 +20,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="place in places.items | orderBy:'submittedDate'" ng-controller="rowController as row">
-            <td> {{place.title | uppercase }}</td>
+            <td> <span class="success">{{place.title | uppercase }}</span> <span ng-show="place.visited" class="glyphicon glyphicon-ok"></span> </td>
             <td>
                 <div class="circle" ng-style="row.setColor(place.type)" title="{{place.type}}">{{place.type | limitTo: 1}}</div>
             </td>
