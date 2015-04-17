@@ -6,12 +6,33 @@
 	});
 
 	app.controller('rowController', function() {
-		this.type = 1;
+		this.backgroundColors = styles;
+		this.color = '#' + this.backgroundColors["Неизвестно/Другое"];
 
-		this.setType = function(placeType) {
-			return
+		this.setColor = function(placeType) {
+			if (placeType in styles) {
+				this.color = '#' + this.backgroundColors[placeType];
+			}
+			return {background: this.color };
 		};
+
 	});
+
+	app.controller('theadController', function() {
+		this.sortBy = function(col) {
+			// TODO rootscope sortby; ng-click sortBy()
+		}
+	});
+
+	var styles = {
+		"Дренаж": "BDBDBD",
+		"Ливневый коллектор": "99CCFF",
+		"Бытовая канализация": "FFA347",
+		"Коммунальный коллектор": "6CB56C",
+		"Подвал": "FF6699",
+		"Историческое сооружение": "FFF047",
+		"Неизвестно/Другое": "5C5CAD"
+	};
 
 	var places = [
 		{
@@ -42,7 +63,7 @@
 			title: 'Коллектор в Буче',
 			coordinates: [5.9817263, 3.23412],
 			description: 'глубоко в лесу есть герма блаблабла',
-			type: "Ливневый коллектор",
+			type: "Подвал",
 			submittedBy: "ACIS",
 			visited: true,
 			visitDate: 123123123123,
@@ -55,7 +76,7 @@
 			title: 'Коллектор в Буче',
 			coordinates: [5.9817263, 3.23412],
 			description: 'глубоко в лесу есть герма блаблабла',
-			type: "Ливневый коллектор",
+			type: "Историческое сооружение",
 			submittedBy: "ACIS",
 			visited: true,
 			visitDate: 123123123123,
@@ -65,10 +86,10 @@
 		{
 			id: 5,
 			submittedDate: 1312321212121,
-			title: 'Коллектор в Буче',
+			title: 'Кол1тор в Буче',
 			coordinates: [5.9817263, 3.23412],
 			description: 'глубоко в лесу есть герма блаблабла',
-			type: "Ливневый коллектор",
+			type: "Бытовggая канализация",
 			submittedBy: "ACIS",
 			visited: true,
 			visitDate: 123123123123,
@@ -81,7 +102,7 @@
 			title: 'Коллектор в Буче',
 			coordinates: [5.9817263, 3.23412],
 			description: 'глубоко в лесу есть герма блаблабла',
-			type: "Ливневый коллектор",
+			type: "Коммунальный коллектор",
 			submittedBy: "ACIS",
 			visited: true,
 			visitDate: 123123123123,

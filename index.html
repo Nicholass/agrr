@@ -3,13 +3,14 @@
 <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/custom.css"/>
     <title></title>
 </head>
 <body>
 
 <div class="table-responsive" ng-controller="agrrController as places">
     <table class="table table-bordered table-hover">
-        <thead>
+        <thead ng-controller="theadController as head">
         <tr>
             <th>Объект</th>
             <th>Тип объекта</th>
@@ -21,9 +22,7 @@
         <tr ng-repeat="place in places.items | orderBy:'submittedDate'" ng-controller="rowController as row">
             <td> {{place.title | uppercase }}</td>
             <td>
-                <span ng-class="row.setType(place.type)">
-                    {{place.type}}
-                </span>
+                <div class="circle" ng-style="row.setColor(place.type)" title="{{place.type}}">{{place.type | limitTo: 1}}</div>
             </td>
             <td> {{place.description}}</td>
             <td> {{place.submittedDate | date:"dd/MM/yyyy @ hh:mm"}}</td>
