@@ -2,33 +2,73 @@
 <html ng-app="agrr">
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <title></title>
 </head>
 <body>
+<div class="container-fluid body"><div ng-controller="tableController as places">
+    <div class="row nav-box">
+        <div class=" col-xs-12 col-sm-3">
+            <img src="http://www.acis.org.ua/design/img/log1.jpg">
+        </div>
+        <div class=" col-xs-12 col-sm-6 col-sm-offset-2">
+            <h1>
+                Сортировка
+            </h1>
+            <ul class="nav nav-pills nav-justified" ng-controller="TabController as tab">
+                <li role="presentation" ng-class="{ active: tab.isSet(1) }" ng-click="places.sortBy('title')">
+                    <a ng-click="tab.setTab(1)">Объект</a></li>
+                <li role="presentation" ng-class="{ active: tab.isSet(2) }" ng-click="places.sortBy('type')">
+                    <a ng-click="tab.setTab(2)">Тип объекта</a></li>
+                <li role="presentation" ng-class="{ active: tab.isSet(3) }" ng-click="places.sortBy('submittedDate')">
+                    <a ng-click="tab.setTab(3)">Время</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-xs-12">
+            Marketing Talk
+        </div>
+    </div>
 
-<div class="table-responsive" ng-controller="agrrController as places">
-    <table class="table table-bordered table-hover">
-        <thead ng-controller="theadController as head">
-        <tr>
-            <th>Объект</th>
-            <th>Тип объекта</th>
-            <th>Описание</th>
-            <th>Время</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr id="{{place.id}}" ng-repeat="place in places.items | orderBy:'submittedDate'" ng-controller="rowController as row">
-            <td> <span class="success">{{place.title | uppercase }}</span> <span ng-show="place.visited" class="glyphicon glyphicon-ok"></span> </td>
-            <td>
-                <div class="circle" ng-style="row.setColor(place.type)" title="{{place.type}}">{{place.type | limitTo: 1}}</div>
-            </td>
-            <td> {{place.description}}</td>
-            <td> {{place.submittedDate | date:"dd/MM/yyyy @ hh:mm"}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="container" ng-repeat="place in places.items | orderBy: places.orderingField">
+        <div id="{{place.id}}" ng-click="places.navigate(place.id)" class="row hoverDiv place"
+             ng-controller="rowController as row">
+            <div class=" col-xs-6 col-lg-1">
+                Controls {{place.id}}
+            </div>
+            <div class=" col-xs-6 col-lg-3 col-lg-offset-1">
+                <span> {{place.title | uppercase }} <span ng-show="place.visited" class="glyphicon glyphicon-ok"></span> </span>
+            </div>
+            <div class=" col-xs-6 col-lg-1">
+                <div class="circle"
+                     ng-style="{'border-color': row.setColor(place.type), 'color': row.setColor(place.type)}"
+                     title="{{place.type}}">
+                    <span class="circle-text">
+                        {{place.type | limitTo: 1}}
+                    </span>
+                </div>
+            </div>
+            <div class=" col-xs-6 col-sm-4">
+                <em class="pull-right">{{place.submittedDate | date:"dd/MM/yyyy @ hh:mm"}}</em>
+            </div>
+        </div>
+        <div ng-show="places.checkShow(place.id)">
+            <div class="row more-info">
+                <div class=" col-xs-6 col-sm-4">
+                    {{place.description}}
+                </div>
+                <div class=" col-xs-12 col-sm-8 col-lg-4">
+                    <a href="http://wikimapia.org/#lang=ru&lat={{place.coordinates.lat}}&lon={{place.coordinates.lon}}&z=17&m=b">See
+                        on wikimapia</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div><div>
     <script type="text/javascript" src="scripts/angular.min.js"></script>
     <script type="text/javascript" src="scripts/app.js"></script>
 </div>
