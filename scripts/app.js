@@ -1,4 +1,6 @@
 (function() {
+
+	// TODO edit modal; visit modal; refactor; backend;
 	var app = angular.module('agrr', []);
 
 	app.controller('tableController', function() {
@@ -15,6 +17,7 @@
 		};
 
 		this.sortBy = function(field) {
+			this.currentPlace = 0;
 			this.orderingField = (this.orderingField != field ? "" : "-") + field ;
 		};
 	});
