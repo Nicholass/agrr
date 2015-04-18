@@ -7,7 +7,7 @@
 		this.orderingField = "id";
 
 		this.navigate = function(id) {
-			this.currentPlace = this.currentPlace != id? id : 0;
+			this.currentPlace = this.currentPlace != id ? id : 0;
 		};
 
 		this.checkShow = function(id) {
@@ -15,7 +15,7 @@
 		};
 
 		this.sortBy = function(field) {
-			this.orderingField = field;
+			this.orderingField = (this.orderingField != field ? "" : "-") + field ;
 		};
 	});
 
