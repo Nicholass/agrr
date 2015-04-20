@@ -89,7 +89,9 @@
 			submittedDate: 1212321212121,
 			title: 'Коллектор в Буче',
 			coordinates: [5.9817263, 3.23412],
-			description: 'глубоко в лесу есть герма блаблабла',
+			description: 'глубоко в лесу есть герма блаблабла' +
+			'blah blah blah' +
+			'blha lbha lbhasf',
 			type: "Подвал",
 			submittedBy: "ACIS",
 			visited: true,

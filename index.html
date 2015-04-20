@@ -28,11 +28,24 @@
     </div>
     <div class="row">
         <div class=" col-xs-12">
-            Marketing Talk
+            <form class="form-horizontal">
+            <fieldset>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="query">Поиск</label>
+                    <div class="col-md-4">
+                        <input id="query" name="query" type="text" placeholder="" class="form-control input-sm" ng-model="query">
+
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
         </div>
     </div>
 
-    <div class="container" ng-repeat="place in places.items | orderBy: places.orderingField">
+    <div class="container" ng-repeat="place in places.items | orderBy: places.orderingField | filter:query"">
         <div id="{{place.id}}" ng-click="places.navigate(place.id)" class="row hoverDiv place"
              ng-controller="rowController as row">
             <div class=" col-xs-6 col-lg-1">
