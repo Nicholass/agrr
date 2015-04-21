@@ -1,54 +1,92 @@
+//Gruntfile
 module.exports = function(grunt) {
 
 	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+		pkg: grunt.file.readJSON('bower.json'),
 		concat: {
-			options: {
-				separator: "\r\n\r\n"
+			js: {
+				src: [
+					'./bower_components/jquery/dist/jquery.js',
+					'./bower_components/bootstrap/dist/js/bootstrap.js',
+					'./assets/scripts/*.js'
+				],
+				dest: './html/js/script.js'
 			},
-			dist:{
+			css: {
+				src: [
+					'./bower_components/bootstrap/dist/css/bootstrap.min.css',
+					"./html/css/main.css"
+				],
+				dest: "./html/css/agrr.css"
+			}
+		},
+		uglify: {
+			main: {
 				files: {
-					'./html/css/cex.css': [
-						'./html/css/cex/import.css'
-
-					],
-					'./html/js/bootstrap.js': [
-						'./html/js/bootstrap2/transition.js'
-					]
+					src: '<%= concat.main.dest %>',
+					dest: './html/js/script.min.js'
 				}
 			}
 		},
 		copy: {
 			main: {
 				files: [
-					{expand: false, src:'./html/js/bootstrap.js', dest: './html/scripts/bootstrap.js' }
-					//{expand: true, cwd: './scripts/async/', src: ['**'], dest: './www/js/ng/async/'}
-					// includes files within path and its sub-directories
-					//{expand: true, src: ['path/**'], dest: 'dest/'},
-					// makes all src relative to cwd
-					//{expand: true, cwd: 'path/', src: ['**'], dest: 'dest/'},
-					// flattens results to a single level
-					//{expand: true, flatten: true, src: ['path/**'], dest: 'dest/', filter: 'isFile'}
+					{
+						expand: false,
+						src: './bower_components/angular/angular.min.js',
+						dest: './html/js/angular.min.js'
+
+					}
 				]
 			}
 		},
-		jshint: {
-			all: ['Gruntfile.js', './html/scripts/trade.js']
+
+		less: {
+			main: {
+				options: {
+					compress: true  //minifying the result
+				},
+				files: {
+					//compiling frontend.less into frontend.css
+					"./html/css/main.css":"./assets/stylesheets/main.less"
+				}
+			}
 		},
+
+
 		watch: {
-			cexcss : {
-				files: ['./html/css/cex/*.css', './html/css/signup-modals.css', './html/js/bootstrap2/*.js'],
-				tasks: ['concat', 'copy']
+			js: {
+				files: [
+					//watched files
+					'./bower_components/jquery/jquery.js',
+					'./bower_components/bootstrap/dist/js/bootstrap.js',
+					'./assets/scripts/app.js'
+				],
+				tasks: ['concat:js','uglify'],     //tasks to run
+				options: {
+					livereload: true                        //reloads the browser
+				}
+			},
+			less: {
+				files: ['./assets/stylesheets/*.less'],  //watched files
+				tasks: ['less'],                          //tasks to run
+				options: {
+					livereload: true                        //reloads the browser
+				}
 			}
 		}
 	});
 
+	// Plugin loading
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('js-hint', ['jshint']);
-	grunt.registerTask('default', ['concat', 'copy', 'watch']);
-	grunt.registerTask('build', ['concat', 'copy']);
+	// Task definition
+	grunt.registerTask('default', ['concat', 'less', 'uglify', 'watch']);
+	grunt.registerTask('build', ['concat', 'copy', 'less']);
+
+
 };
