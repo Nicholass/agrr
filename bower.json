@@ -1,0 +1,23 @@
+{
+  "name": "agrr",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Nicholass/agrr",
+  "authors": [
+    "Mykola Korobko (korobko.nikolay@gmail.com)"
+  ],
+  "description": "Ideas aggregator for ACIS diggers",
+  "license": "Apache License 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap":"latest",
+    "jQuery":"latest",
+    "angular-latest":"latest"
+  }
+}
