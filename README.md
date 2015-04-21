@@ -6,9 +6,13 @@ Idea aggregator for [ACIS](http://acis.org.ua) giggers
 
 ## Deployment:
 Run following commands in the project directory:
-- `npm install`
-- `bower install`
-- `grunt build`
+
+`npm install`
+
+`bower install`
+
+`grunt build`
+
 
 ## License:
 - Apache License 2.0
