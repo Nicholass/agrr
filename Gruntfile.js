@@ -4,37 +4,39 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('bower.json'),
 		concat: {
-			js: {
+			main: {
 				src: [
 					'./bower_components/jquery/dist/jquery.js',
 					'./bower_components/bootstrap/dist/js/bootstrap.js',
 					'./assets/scripts/*.js'
 				],
 				dest: './html/js/script.js'
-			},
-			css: {
-				src: [
-					'./bower_components/bootstrap/dist/css/bootstrap.min.css',
-					"./html/css/main.css"
-				],
-				dest: "./html/css/agrr.css"
 			}
 		},
 		uglify: {
 			main: {
 				files: {
-					src: '<%= concat.main.dest %>',
-					dest: './html/js/script.min.js'
+					'./html/js/script.min.js': '<%= concat.main.dest %>'
 				}
 			}
 		},
 		copy: {
-			main: {
+			js: {
 				files: [
 					{
 						expand: false,
 						src: './bower_components/angular/angular.min.js',
 						dest: './html/js/angular.min.js'
+
+					}
+				]
+			},
+			css: {
+				files: [
+					{
+						expand: false,
+						src: './bower_components/bootstrap/dist/css/bootstrap.min.css',
+						dest: './html/css/bootstrap.css'
 
 					}
 				]
@@ -60,9 +62,10 @@ module.exports = function(grunt) {
 					//watched files
 					'./bower_components/jquery/jquery.js',
 					'./bower_components/bootstrap/dist/js/bootstrap.js',
+					'./bower_components/angular/angular.min.js',
 					'./assets/scripts/app.js'
 				],
-				tasks: ['concat:js','uglify'],     //tasks to run
+				tasks: ['concat', 'copy', 'uglify'],     //tasks to run
 				options: {
 					livereload: true                        //reloads the browser
 				}
@@ -74,6 +77,12 @@ module.exports = function(grunt) {
 					livereload: true                        //reloads the browser
 				}
 			}
+		},
+
+		clean: {
+			dist: {
+				src: ["./html/css/", "./html/js/"]
+			}
 		}
 	});
 
@@ -83,10 +92,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	// Task definition
-	grunt.registerTask('default', ['concat', 'less', 'uglify', 'watch']);
-	grunt.registerTask('build', ['concat', 'copy', 'less']);
+	grunt.registerTask('default', ['less', 'concat', 'copy', 'watch']);
+	grunt.registerTask('build', ['less', 'concat', 'copy', 'uglify']);
 
 
 };
