@@ -16,13 +16,13 @@
             <h1>
                 Сортировка
             </h1>
-            <ul class="nav nav-pills nav-justified" ng-controller="TabController as tab">
-                <li role="presentation" ng-class="{ active: tab.isSet(1) }" ng-click="places.sortBy('title')">
-                    <a ng-click="tab.setTab(1)">Объект</a></li>
-                <li role="presentation" ng-class="{ active: tab.isSet(2) }" ng-click="places.sortBy('type')">
-                    <a ng-click="tab.setTab(2)">Тип объекта</a></li>
-                <li role="presentation" ng-class="{ active: tab.isSet(3) }" ng-click="places.sortBy('submittedDate')">
-                    <a ng-click="tab.setTab(3)">Время</a></li>
+            <ul class="nav nav-pills nav-justified" >
+                <li role="presentation" ng-class="{ active: places.isSet(1) }" ng-click="places.sortBy('title')">
+                    <a ng-click="places.setTab(1)">Объект</a></li>
+                <li role="presentation" ng-class="{ active: places.isSet(2) }" ng-click="places.sortBy('type')">
+                    <a ng-click="places.setTab(2)">Тип объекта</a></li>
+                <li role="presentation" ng-class="{ active: places.isSet(3) }" ng-click="places.sortBy('submittedDate')">
+                    <a ng-click="places.setTab(3)">Время</a></li>
             </ul>
         </div>
     </div>

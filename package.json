@@ -1,0 +1,22 @@
+{
+  "name": "agrr",
+  "version": "0.0.1",
+  "description": "Idea Aggregator for ACIS diggers",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nicholass/agrr.git"
+  },
+  "author": "Mykola Korobko (korobko.nikolay@gmail.com)",
+  "license": "Apache License 2.0",
+  "bugs": {
+    "url": "https://github.com/Nicholass/agrr/issues"
+  },
+  "homepage": "https://github.com/Nicholass/agrr",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}

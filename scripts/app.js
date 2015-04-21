@@ -7,6 +7,15 @@
 		this.items = places;
 		this.currentPlace = 0;
 		this.orderingField = "id";
+		this.tab = 0;
+
+		this.setTab = function(newValue){
+			this.tab = newValue;
+		};
+
+		this.isSet = function(tabName){
+			return this.tab === tabName;
+		};
 
 		this.navigate = function(id) {
 			this.currentPlace = this.currentPlace != id ? id : 0;
@@ -33,18 +42,15 @@
 			return this.color;
 		};
 
-	});
-
-	app.controller('TabController', function(){
-		this.tab = 0;
-
-		this.setTab = function(newValue){
-			this.tab = newValue;
+		this.edit = function(place) {
+			//spawn edit modal
 		};
 
-		this.isSet = function(tabName){
-			return this.tab === tabName;
-		};
+		this.turnVisited = function(place) {
+
+		}
+		//TODO show edit and visit;
+
 	});
 
 
@@ -58,84 +64,22 @@
 		"Неизвестно/Другое": "#CE93D8"
 	};
 
+	// TODO datamodel: add city;
+	// TODO view: filter by city and type
 	var places = [
 		{
 			id: 1,
-			submittedDate: 1212121212121,
+			submittedDate: 1429604007,
 			title: 'ДШС в лесу',
+			city: "Киев",
 			coordinates: {
 				'lat': 50.468869,
-				'lon': 3.23412
+				'lon': 30.516700
 			},
-			description: 'глубоко в лесу есть герма блаблабла',
+			description: '',
 			type: "Дренаж",
 			submittedBy: "ACIS",
 			visited: false
-		},
-		{
-			id: 2,
-			submittedDate: 1212321212121,
-			title: 'Коллектор в Буче',
-			coordinates: [5.9817263, 3.23412],
-			description: 'глубоко в лесу есть герма блаблабла',
-			type: "Ливневый коллектор",
-			submittedBy: "ACIS",
-			visited: true,
-			visitDate: 123123123123,
-			visitComments: ""
-		},
-		{
-			id: 3,
-			submittedDate: 1212321212121,
-			title: 'Коллектор в Буче',
-			coordinates: [5.9817263, 3.23412],
-			description: 'глубоко в лесу есть герма блаблабла' +
-			'blah blah blah' +
-			'blha lbha lbhasf',
-			type: "Подвал",
-			submittedBy: "ACIS",
-			visited: true,
-			visitDate: 123123123123,
-			visitComments: "Interesting place to see"
-		}
-,
-		{
-			id: 4,
-			submittedDate: 1212321212121,
-			title: 'Коллектор в Буче',
-			coordinates: [5.9817263, 3.23412],
-			description: 'глубоко в лесу есть герма блаблабла',
-			type: "Историческое сооружение",
-			submittedBy: "ACIS",
-			visited: true,
-			visitDate: 123123123123,
-			visitComments: ""
-		}
-,
-		{
-			id: 5,
-			submittedDate: 1312321212121,
-			title: 'Кол1тор в Буче',
-			coordinates: [5.9817263, 3.23412],
-			description: 'глубоко в лесу есть герма блаблабла',
-			type: "Бытовggая канализация",
-			submittedBy: "ACIS",
-			visited: true,
-			visitDate: 123123123123,
-			visitComments: ""
-		}
-,
-		{
-			id: 6,
-			submittedDate: 1212321212121,
-			title: 'Коллектор в Буче',
-			coordinates: [5.9817263, 3.23412],
-			description: 'глубоко в лесу есть герма блаблабла',
-			type: "Коммунальный коллектор",
-			submittedBy: "ACIS",
-			visited: true,
-			visitDate: 123123123123,
-			visitComments: ""
 		}
 
 	]
