@@ -16,7 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular-bootstrap": "~0.12.1",
-    "bootstrap": "~3.3.4"
+    "bootstrap": "~3.3.4",
+    "requirejs": "latest",
+    "backbone-amd": "latest"
   }
 }
