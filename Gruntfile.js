@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 					'./bower_components/bootstrap/dist/js/bootstrap.js',
 					'./assets/scripts/*.js'
 				],
-				dest: './html/js/script.js'
+				dest: './public/js/script.js'
 			}
 		},
 		uglify: {
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 					{
 						expand: false,
 						src: './bower_components/angular/angular.min.js',
-						dest: './html/js/angular.min.js'
+						dest: './public/js/angular.min.js'
 
 					}
 				]
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 					{
 						expand: false,
 						src: './bower_components/bootstrap/dist/css/bootstrap.min.css',
-						dest: './html/css/bootstrap.css'
+						dest: './public/css/bootstrap.css'
 
 					}
 				]
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
 
 		clean: {
 			dist: {
-				src: ["./html/css/", "./html/js/"]
+				src: ["./public/css/", "./public/js/"]
 			}
 		}
 	});
