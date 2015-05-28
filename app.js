@@ -14,12 +14,16 @@ const config = require('./config');
 const log = require('./app/log');
 
 // Init all the stuff
-var server = serverFactory(express, config, log, bodyParser);
+var router = express.Router();
+var app = express();
+
+var server = serverFactory(app, config, log, bodyParser);
 var db = dbfactory(mongoose, fs, path, config, log);
 /*
-TODO backend: schemas && schemaList; db CRUD; handlers (based on CRUD); append handlers to rotes
+TODO backend: finish routers; append router to app;
 - http://mongoosejs.com/docs/guide.html
 - http://habrahabr.ru/post/213931/
+- http://www.sitepoint.com/creating-restful-apis-express-4/
 TODO frontend: think'bout #!routes -> modals-views -> controllers <- react && backbone
 */
 

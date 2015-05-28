@@ -1,7 +1,5 @@
-module.exports = function (express, config, loggerFactory, bodyParser) {
+module.exports = function (app, config, loggerFactory, bodyParser) {
     var log = loggerFactory(module);
-
-    var app = express();
 
     app.use(bodyParser);
 
@@ -21,13 +19,12 @@ module.exports = function (express, config, loggerFactory, bodyParser) {
 
     function run(db) {
         //routes.setup(app, handlers);
-        db.initModels(path.join(__dirname, "app", "models"), function (err, data) {
+        db.connect2db(function() {
+            log.info("DB init");
+        });
 
-            log.info("All the models are initialized");
-
-            app.listen(config.get('port'), function () {
-                log.info("App running on port: " + config.get('port'));
-            });
+        app.listen(config.get('port'), function () {
+            log.info("App running on port: " + config.get('port'));
         });
     }
 
